@@ -1,20 +1,20 @@
 <?php
+// good to have error reporting
 error_reporting(E_ERROR | E_PARSE);
 
+// configuration
 $GOOGLE_API_KEY = "YOUR_API_KEY";
 $database = "/path/to/marriott.db";
 $url = "https://www.marriott.com/corporate-social-responsibility/electric-vehicle-hotels.mi";
 
-
+// here we go
 $db = new SQLite3($database);
-
 $html = @file_get_contents($url);
 if (!$html) {
   die('Cannot fetch EV locations!');
 }
 
-
-
+// parse the DOM
 $doc = new DOMDocument();
 $doc->loadHTML($html);
 $root = $doc->documentElement; 
